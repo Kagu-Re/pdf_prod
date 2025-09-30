@@ -177,7 +177,7 @@ const getColorClasses = (color: CardColor): {
   const colorMap = {
     primary: {
       text: 'text-blue-900',
-      icon: 'text-blue-600',
+      icon: 'business',
       iconBg: 'bg-blue-100',
       optionBg: 'bg-blue-50',
       optionBorder: 'border-blue-200',
@@ -190,7 +190,7 @@ const getColorClasses = (color: CardColor): {
     },
     secondary: {
       text: 'text-purple-900',
-      icon: 'text-purple-600',
+      icon: 'rocket',
       iconBg: 'bg-purple-100',
       optionBg: 'bg-purple-50',
       optionBorder: 'border-purple-200',
@@ -203,7 +203,7 @@ const getColorClasses = (color: CardColor): {
     },
     accent: {
       text: 'text-orange-900',
-      icon: 'text-orange-600',
+      icon: 'warning',
       iconBg: 'bg-orange-100',
       optionBg: 'bg-orange-50',
       optionBorder: 'border-orange-200',
@@ -216,7 +216,7 @@ const getColorClasses = (color: CardColor): {
     },
     success: {
       text: 'text-green-900',
-      icon: 'text-green-600',
+      icon: 'success',
       iconBg: 'bg-green-100',
       optionBg: 'bg-green-50',
       optionBorder: 'border-green-200',
@@ -229,7 +229,7 @@ const getColorClasses = (color: CardColor): {
     },
     warning: {
       text: 'text-yellow-900',
-      icon: 'text-yellow-600',
+      icon: 'star',
       iconBg: 'bg-yellow-100',
       optionBg: 'bg-yellow-50',
       optionBorder: 'border-yellow-200',
@@ -242,7 +242,7 @@ const getColorClasses = (color: CardColor): {
     },
     error: {
       text: 'text-red-900',
-      icon: 'text-red-600',
+      icon: 'error',
       iconBg: 'bg-red-100',
       optionBg: 'bg-red-50',
       optionBorder: 'border-red-200',
@@ -255,7 +255,7 @@ const getColorClasses = (color: CardColor): {
     },
     neutral: {
       text: 'text-gray-900',
-      icon: 'text-gray-600',
+      icon: 'neutral',
       iconBg: 'bg-gray-100',
       optionBg: 'bg-gray-50',
       optionBorder: 'border-gray-200',
@@ -704,7 +704,7 @@ export const ProductComparison: React.FC<Omit<ComparisonCardProps, 'title' | 'op
   <ComparisonCard
     title="Product Feature Comparison"
     subtitle="Compare key features and capabilities"
-    icon="chart',
+    icon="chart"
     color="accent"
     options={[
       {
@@ -726,7 +726,7 @@ export const ProductComparison: React.FC<Omit<ComparisonCardProps, 'title' | 'op
         title: 'Product B',
         subtitle: 'Standard Edition',
         description: 'Solid product with essential features',
-        icon: 'check-circle',
+        icon: 'success',
         features: ['Core Features', 'Easy Setup', 'Good Support', 'Reliable'],
         pros: ['Simple', 'Reliable', 'Well-supported'],
         cons: ['Limited features', 'Less flexible'],
