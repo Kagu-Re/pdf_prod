@@ -378,7 +378,7 @@ export const InfoIcon = (props: Omit<IconProps, 'name'>) => <Icon name="info" co
 export const ErrorIcon = (props: Omit<IconProps, 'name'>) => <Icon name="error" color="error" {...props} />;
 
 // Business icons
-export const UserIcon = (props: Omit<IconProps, 'name'>) => <Icon name="user" color="neutral" {...props} />;
+export const UserIconComponent = (props: Omit<IconProps, 'name'>) => <Icon name="user" color="neutral" {...props} />;
 export const BusinessIcon = (props: Omit<IconProps, 'name'>) => <Icon name="business" color="primary" {...props} />;
 export const MoneyIcon = (props: Omit<IconProps, 'name'>) => <Icon name="money" color="success" {...props} />;
 export const TimeIcon = (props: Omit<IconProps, 'name'>) => <Icon name="time" color="neutral" {...props} />;
@@ -392,7 +392,7 @@ export const SecurityIcon = (props: Omit<IconProps, 'name'>) => <Icon name="secu
 export const GlobeIcon = (props: Omit<IconProps, 'name'>) => <Icon name="globe" color="primary" {...props} />;
 export const MobileIcon = (props: Omit<IconProps, 'name'>) => <Icon name="mobile" color="neutral" {...props} />;
 export const DesktopIcon = (props: Omit<IconProps, 'name'>) => <Icon name="desktop" color="neutral" {...props} />;
-export const CloudIcon = (props: Omit<IconProps, 'name'>) => <Icon name="cloud" color="secondary" {...props} />;
+export const CloudIconComponent = (props: Omit<IconProps, 'name'>) => <Icon name="cloud" color="secondary" {...props} />;
 
 // ========================================
 // ICON WITH BACKGROUND COMPONENT

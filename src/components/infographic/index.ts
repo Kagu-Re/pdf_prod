@@ -3,7 +3,7 @@
 // ========================================
 
 // Design System
-export { default as DesignSystem } from '../../styles/design-system.css';
+// CSS files are imported directly, not exported as modules
 
 // Base Components
 export { default as BaseCard, HeroCardBase, ContentCardBase, MetricCardBase, ProcessCardBase, ComparisonCardBase } from './BaseCard';
