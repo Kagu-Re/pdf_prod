@@ -33,6 +33,7 @@
     "export:linkedin-unified": "node src/export/export-linkedin-unified.mjs",
     "export:conversation": "node src/export/export-conversation.mjs",
     "export:infographic": "node src/export/export-infographic-test.mjs",
+    "export:card": "node src/export/export-single-card.mjs",
     "test": "node tests/asset-validation.mjs",
     "test:url": "node tests/url-test.mjs",
     "test:exports": "node tests/export-tests.mjs",

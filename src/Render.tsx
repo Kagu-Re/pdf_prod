@@ -32,6 +32,8 @@ import FreelanceQuestLanding from './pages/FreelanceQuestLanding'
 import WaterRippleCarousel from './pages/WaterRippleCarousel'
 import WaterRippleTriptych from './pages/WaterRippleTriptych'
 import InfographicTest from './components/infographic/InfographicTest'
+import CardFactoryDemo from './components/infographic/CardFactoryDemo'
+import TemplateManager from './components/infographic/TemplateManager'
 import { CopySchema } from './data/CopySchema'
 import { MetricPresetSchema, EMDPresetSchema } from './brand/PresetSchema'
 
@@ -70,7 +72,9 @@ const components: ComponentMap = {
          FreelanceQuestLanding,
          WaterRippleCarousel,
          WaterRippleTriptych,
-         InfographicTest
+         InfographicTest,
+         CardFactoryDemo,
+         TemplateManager
 }
 
 async function loadJSON(path: string) {
@@ -107,8 +111,8 @@ export default function Render() {
       }
       setComp(() => C)
 
-      // LinkedInCarousel and InfographicTest don't need preset or copy data
-      if (compName === 'LinkedInCarousel' || compName === 'InfographicTest') {
+      // LinkedInCarousel, InfographicTest, CardFactoryDemo, and TemplateManager don't need preset or copy data
+      if (compName === 'LinkedInCarousel' || compName === 'InfographicTest' || compName === 'CardFactoryDemo' || compName === 'TemplateManager') {
         console.log(`${compName} - no preset needed`)
         setProps({})
         setLoading(false)

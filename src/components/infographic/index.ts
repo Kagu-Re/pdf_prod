@@ -98,6 +98,38 @@ export type {
   ComparisonRecommendation 
 } from './ComparisonCard';
 
+// Card Factory
+export { 
+  default as CardFactory,
+  createCard,
+  createCards,
+  validateCardData,
+  CardTemplates
+} from './CardFactory';
+export type { 
+  CardData, 
+  HeroCardData, 
+  ContentCardData, 
+  MetricCardData, 
+  ProcessCardData, 
+  ComparisonCardData, 
+  AnyCardData 
+} from './CardFactory';
+
+// Template System
+export { default as TemplateManager } from './TemplateManager';
+export { 
+  templateCategories, 
+  allTemplates, 
+  templateUtils,
+  marketingTemplates,
+  businessTemplates,
+  processTemplates,
+  comparisonTemplates,
+  contentTemplates
+} from '../../data/CardTemplates';
+export type { TemplateCategory, CardTemplate } from '../../data/CardTemplates';
+
 // ========================================
 // UTILITY FUNCTIONS
 // ========================================
