@@ -1,0 +1,49 @@
+{
+  "title": "Q3 Marketing Performance",
+  "subtitle": "Key metrics driving our growth trajectory",
+  "timeframe": "Q3 2025",
+  "metrics": [
+    {
+      "label": "Conversion Rate",
+      "value": "12.4%",
+      "delta": "+3.2pp",
+      "category": "Performance",
+      "trend": "up"
+    },
+    {
+      "label": "Cost Per Lead",
+      "value": "$24",
+      "delta": "-18%",
+      "category": "Efficiency",
+      "trend": "up"
+    },
+    {
+      "label": "Email Open Rate",
+      "value": "34.7%",
+      "delta": "+5.1pp",
+      "category": "Engagement",
+      "trend": "up"
+    },
+    {
+      "label": "Social Engagement",
+      "value": "89k",
+      "delta": "+127%",
+      "category": "Reach",
+      "trend": "up"
+    },
+    {
+      "label": "ROAS",
+      "value": "4.2x",
+      "delta": "+0.8x",
+      "category": "Revenue",
+      "trend": "up"
+    },
+    {
+      "label": "Lead Quality Score",
+      "value": "8.7/10",
+      "delta": "+1.3",
+      "category": "Quality",
+      "trend": "up"
+    }
+  ]
+}

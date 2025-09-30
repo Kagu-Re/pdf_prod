@@ -1,0 +1,187 @@
+/* Cyberpunk Animations */
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px #00ff41,
+      0 0 10px #00ff41,
+      0 0 15px #00ff41,
+      0 0 20px #00ff41;
+  }
+  50% {
+    text-shadow: 
+      0 0 2px #00ff41,
+      0 0 5px #00ff41,
+      0 0 8px #00ff41,
+      0 0 12px #00ff41;
+  }
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes cyberpunkPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px #00ff41,
+      0 0 10px #00ff41,
+      inset 0 0 5px #00ff41;
+  }
+  50% {
+    box-shadow: 
+      0 0 20px #00ff41,
+      0 0 30px #00ff41,
+      inset 0 0 10px #00ff41;
+  }
+}
+
+@keyframes dataStream {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes expandWidth {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+/* Cyberpunk Classes */
+.cyberpunk-glow {
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.cyberpunk-pulse {
+  animation: cyberpunkPulse 1.5s ease-in-out infinite;
+}
+
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff41, transparent);
+  animation: dataStream 3s linear infinite;
+}
+
+/* Cyberpunk Grid */
+.cyberpunk-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Neon Text Effects */
+.neon-text {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+.neon-border {
+  border: 2px solid #00ff41;
+  box-shadow: 
+    0 0 5px #00ff41,
+    inset 0 0 5px #00ff41;
+}
+
+/* Cyberpunk Buttons */
+.cyberpunk-btn {
+  background: linear-gradient(45deg, #00ff41, #00ffff);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cyberpunk-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 65, 0.4);
+}
+
+.cyberpunk-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cyberpunk-btn:hover::before {
+  left: 100%;
+}
+
+/* Matrix Background */
+.matrix-bg {
+  background: 
+    radial-gradient(ellipse at center, rgba(0, 255, 65, 0.1) 0%, transparent 70%),
+    linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+/* Cyberpunk Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff41;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffff;
+}

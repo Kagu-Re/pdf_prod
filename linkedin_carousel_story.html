@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Carousel - Експлуатація Досвіду</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: auto;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .carousel-container {
+            display: flex;
+            width: max-content;
+            min-height: 100vh;
+            background: #000;
+        }
+        
+        .slide {
+            width: 1200px;
+            height: 1500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            border-right: 3px solid rgba(255, 69, 0, 0.3);
+            background: #000;
+            overflow: hidden;
+            animation: ambientGlow 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes ambientGlow {
+            0% {
+                box-shadow: 
+                    inset 0 0 50px rgba(200, 200, 200, 0.05),
+                    0 0 30px rgba(150, 150, 150, 0.03);
+            }
+            50% {
+                box-shadow: 
+                    inset 0 0 80px rgba(220, 220, 220, 0.08),
+                    0 0 50px rgba(180, 180, 180, 0.05);
+            }
+            100% {
+                box-shadow: 
+                    inset 0 0 60px rgba(180, 180, 180, 0.06),
+                    0 0 40px rgba(160, 160, 160, 0.04);
+            }
+        }
+        
+        .slide-content {
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(255, 69, 0, 0.03) 50%, rgba(0, 0, 0, 0.85) 100%);
+            padding: 50px;
+            border-radius: 0;
+            border: 2px solid rgba(255, 69, 0, 0.2);
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            box-shadow: 
+                inset 0 0 20px rgba(255, 69, 0, 0.05),
+                0 0 15px rgba(255, 69, 0, 0.1);
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 75%, rgba(200, 200, 200, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 10%, rgba(220, 220, 220, 0.04) 0%, transparent 70%),
+                radial-gradient(ellipse at 25% 85%, rgba(180, 180, 180, 0.05) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 15%, rgba(240, 240, 240, 0.03) 0%, transparent 65%),
+                repeating-linear-gradient(30deg, transparent 0px, transparent 40px, rgba(255, 255, 255, 0.01) 40px, rgba(255, 255, 255, 0.01) 80px),
+                repeating-linear-gradient(60deg, transparent 0px, transparent 60px, rgba(200, 200, 200, 0.01) 60px, rgba(200, 200, 200, 0.01) 120px);
+            z-index: 1;
+        }
+        
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.04) 30%, rgba(200, 200, 200, 0.02) 70%, transparent 100%),
+                linear-gradient(-45deg, transparent 0%, rgba(220, 220, 220, 0.03) 40%, rgba(180, 180, 180, 0.01) 80%, transparent 100%),
+                linear-gradient(135deg, transparent 0%, rgba(240, 240, 240, 0.02) 50%, transparent 100%),
+                linear-gradient(-135deg, transparent 0%, rgba(255, 255, 255, 0.01) 60%, transparent 100%),
+                repeating-linear-gradient(15deg, transparent 0px, transparent 25px, rgba(255, 255, 255, 0.005) 25px, rgba(255, 255, 255, 0.005) 50px),
+                repeating-linear-gradient(75deg, transparent 0px, transparent 35px, rgba(200, 200, 200, 0.005) 35px, rgba(200, 200, 200, 0.005) 70px);
+            z-index: 1;
+        }
+        
+        .slide:hover::before {
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 75%, rgba(220, 220, 220, 0.10) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 10%, rgba(240, 240, 240, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 25% 85%, rgba(200, 200, 200, 0.09) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 15%, rgba(255, 255, 255, 0.06) 0%, transparent 65%),
+                repeating-linear-gradient(30deg, transparent 0px, transparent 40px, rgba(255, 255, 255, 0.02) 40px, rgba(255, 255, 255, 0.02) 80px),
+                repeating-linear-gradient(60deg, transparent 0px, transparent 60px, rgba(200, 200, 200, 0.02) 60px, rgba(200, 200, 200, 0.02) 120px);
+        }
+        
+        .slide:hover::after {
+            background: 
+                linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.06) 30%, rgba(200, 200, 200, 0.04) 70%, transparent 100%),
+                linear-gradient(-45deg, transparent 0%, rgba(220, 220, 220, 0.05) 40%, rgba(180, 180, 180, 0.02) 80%, transparent 100%),
+                linear-gradient(135deg, transparent 0%, rgba(240, 240, 240, 0.03) 50%, transparent 100%),
+                linear-gradient(-135deg, transparent 0%, rgba(255, 255, 255, 0.02) 60%, transparent 100%),
+                repeating-linear-gradient(15deg, transparent 0px, transparent 25px, rgba(255, 255, 255, 0.01) 25px, rgba(255, 255, 255, 0.01) 50px),
+                repeating-linear-gradient(75deg, transparent 0px, transparent 35px, rgba(200, 200, 200, 0.01) 35px, rgba(200, 200, 200, 0.01) 70px);
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: 
+                linear-gradient(135deg, rgba(255, 69, 0, 0.8) 0%, rgba(255, 107, 53, 0.6) 50%, rgba(255, 69, 0, 0.8) 100%);
+            color: #fff;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            border: 2px solid rgba(102, 102, 102, 0.3);
+            z-index: 20;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+            text-transform: uppercase;
+            box-shadow: 
+                0 0 10px rgba(255, 69, 0, 0.2),
+                inset 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+        
+        .title {
+            font-size: 100px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            line-height: 0.9;
+            max-width: 1100px;
+            display: block;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                2px 2px 0 rgba(255, 69, 0, 0.3),
+                -2px -2px 0 rgba(102, 102, 102, 0.3),
+                0 0 20px rgba(255, 69, 0, 0.2);
+            background: 
+                linear-gradient(45deg, #fff 0%, rgba(255, 69, 0, 0.6) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 50px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 1100px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                2px 2px 0 #ff4500,
+                -2px -2px 0 #666;
+        }
+        
+        .content {
+            font-size: 42px;
+            line-height: 1.3;
+            text-align: center;
+            max-width: 1000px;
+            color: #fff;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                1px 1px 0 #ff4500,
+                -1px -1px 0 #666;
+        }
+        
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 40px auto;
+            z-index: 20;
+            position: relative;
+        }
+        
+        .list-item {
+            margin: 20px 0;
+            padding: 20px 30px;
+            position: relative;
+            font-size: 36px;
+            line-height: 1.2;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
+            border-left: 5px solid #ff4500;
+            border-right: 5px solid #666;
+            z-index: 20;
+            text-shadow: 
+                1px 1px 0 #ff4500,
+                -1px -1px 0 #666;
+        }
+        
+        .list-item::before {
+            content: '▶';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 28px;
+            text-shadow: 
+                2px 2px 0 #666,
+                -2px -2px 0 #ff4500;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 48px;
+            color: #fff;
+            text-align: center;
+            margin: 60px 0;
+            padding: 50px;
+            border: 5px solid #ff4500;
+            background: rgba(0, 0, 0, 0.9);
+            max-width: 1000px;
+            line-height: 1.2;
+            z-index: 20;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% calc(100% - 20px), 20px 100%);
+            text-shadow: 
+                2px 2px 0 #ff4500,
+                -2px -2px 0 #666;
+        }
+        
+        .hashtags {
+            text-align: center;
+            font-size: 28px;
+            color: #fff;
+            line-height: 1.2;
+            font-weight: 900;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                2px 2px 0 #ff4500,
+                -2px -2px 0 #666;
+        }
+        
+        .fire-texture {
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(220, 220, 220, 0.06) 50%, transparent 70%),
+                radial-gradient(ellipse at 30% 70%, rgba(240, 240, 240, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(200, 200, 200, 0.04) 0%, transparent 50%),
+                repeating-linear-gradient(25deg, transparent 0px, transparent 15px, rgba(255, 255, 255, 0.02) 15px, rgba(255, 255, 255, 0.02) 30px),
+                repeating-linear-gradient(65deg, transparent 0px, transparent 20px, rgba(200, 200, 200, 0.01) 20px, rgba(200, 200, 200, 0.01) 40px);
+            animation: fireFlicker 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes fireFlicker {
+            0% { filter: brightness(1) contrast(1); }
+            25% { filter: brightness(1.1) contrast(1.05); }
+            50% { filter: brightness(0.95) contrast(0.98); }
+            75% { filter: brightness(1.05) contrast(1.02); }
+            100% { filter: brightness(1) contrast(1); }
+        }
+        
+        .wave-texture {
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 70%, rgba(220, 220, 220, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse at 50% 50%, rgba(240, 240, 240, 0.04) 0%, transparent 80%),
+                repeating-linear-gradient(40deg, transparent 0px, transparent 30px, rgba(255, 255, 255, 0.02) 30px, rgba(255, 255, 255, 0.02) 60px),
+                repeating-linear-gradient(80deg, transparent 0px, transparent 45px, rgba(200, 200, 200, 0.01) 45px, rgba(200, 200, 200, 0.01) 90px);
+            animation: waveMotion 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes waveMotion {
+            0% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%, 100% 100%;
+            }
+            50% { 
+                background-position: 25% 25%, 75% 75%, 60% 40%, 25% 25%, 75% 75%;
+            }
+            100% { 
+                background-position: 50% 50%, 50% 50%, 70% 30%, 50% 50%, 50% 50%;
+            }
+        }
+        
+        .landscape-texture {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%, rgba(200, 200, 200, 0.05) 100%),
+                radial-gradient(ellipse at 20% 80%, rgba(240, 240, 240, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(220, 220, 220, 0.03) 0%, transparent 50%),
+                repeating-linear-gradient(20deg, transparent 0px, transparent 25px, rgba(255, 255, 255, 0.01) 25px, rgba(255, 255, 255, 0.01) 50px),
+                repeating-linear-gradient(70deg, transparent 0px, transparent 35px, rgba(200, 200, 200, 0.01) 35px, rgba(200, 200, 200, 0.01) 70px);
+            animation: landscapeShift 12s ease-in-out infinite alternate;
+        }
+        
+        @keyframes landscapeShift {
+            0% { 
+                background-position: 0% 0%, 0% 100%, 100% 0%, 0% 0%, 100% 100%;
+                filter: brightness(1) saturate(1);
+            }
+            33% { 
+                background-position: 33% 33%, 25% 75%, 75% 25%, 33% 33%, 67% 67%;
+                filter: brightness(1.05) saturate(1.1);
+            }
+            66% { 
+                background-position: 66% 66%, 50% 50%, 50% 50%, 66% 66%, 33% 33%;
+                filter: brightness(0.98) saturate(0.95);
+            }
+            100% { 
+                background-position: 100% 100%, 75% 25%, 25% 75%, 100% 100%, 0% 0%;
+                filter: brightness(1.02) saturate(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <!-- Slide 1: Hook -->
+        <div class="slide fire-texture">
+            <div class="slide-number">1/12</div>
+            <div class="slide-content">
+                <div class="title">ЕКСПЛУАТАЦІЯ</div>
+                <div class="subtitle">ДОСВІДУ</div>
+                <div class="content">
+                    <p>Коли знання стають зброєю</p>
+                </div>
+                <div class="hashtags">#досвід #експлуатація</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide wave-texture">
+            <div class="slide-number">2/12</div>
+            <div class="slide-content">
+                <div class="title">ПРОБЛЕМА</div>
+                <div class="list">
+                    <div class="list-item">Накопичуємо досвід</div>
+                    <div class="list-item">Але не використовуємо</div>
+                    <div class="list-item">Або використовуємо неправильно</div>
+                </div>
+                <div class="hashtags">#проблема #досвід</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Story -->
+        <div class="slide landscape-texture">
+            <div class="slide-number">3/12</div>
+            <div class="slide-content">
+                <div class="title">ІСТОРІЯ</div>
+                <div class="content">
+                    <p>Молодий розробник vs Ветеран</p>
+                    <p>Хто виграє?</p>
+                </div>
+                <div class="hashtags">#історія #розробка</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Paradox -->
+        <div class="slide fire-texture">
+            <div class="slide-number">4/12</div>
+            <div class="slide-content">
+                <div class="title">ПАРАДОКС</div>
+                <div class="content">
+                    <p>Досвід допомагає</p>
+                    <p>Але і обмежує</p>
+                </div>
+                <div class="hashtags">#парадокс #обмеження</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Types -->
+        <div class="slide wave-texture">
+            <div class="slide-number">5/12</div>
+            <div class="slide-content">
+                <div class="title">ТИПИ</div>
+                <div class="list">
+                    <div class="list-item">Раціональне використання</div>
+                    <div class="list-item">Маніпулятивне використання</div>
+                    <div class="list-item">Залежність від минулого</div>
+                </div>
+                <div class="hashtags">#типи #використання</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Balance -->
+        <div class="slide landscape-texture">
+            <div class="slide-number">6/12</div>
+            <div class="slide-content">
+                <div class="title">БАЛАНС</div>
+                <div class="content">
+                    <p>Exploration vs Exploitation</p>
+                    <p>Пошук vs Використання</p>
+                </div>
+                <div class="hashtags">#баланс #інновації</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Warning -->
+        <div class="slide fire-texture">
+            <div class="slide-number">7/12</div>
+            <div class="slide-content">
+                <div class="title">ПОПЕРЕДЖЕННЯ</div>
+                <div class="list">
+                    <div class="list-item">Надто експлуатуєш = стагнація</div>
+                    <div class="list-item">Тільки досліджуєш = брак прибутку</div>
+                </div>
+                <div class="hashtags">#попередження #стагнація</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Solution -->
+        <div class="slide wave-texture">
+            <div class="slide-number">8/12</div>
+            <div class="slide-content">
+                <div class="title">РІШЕННЯ</div>
+                <div class="list">
+                    <div class="list-item">70% експлуатації</div>
+                    <div class="list-item">30% дослідження</div>
+                </div>
+                <div class="hashtags">#рішення #пропорції</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Question -->
+        <div class="slide landscape-texture">
+            <div class="slide-number">9/12</div>
+            <div class="slide-content">
+                <div class="title">ПИТАННЯ</div>
+                <div class="content">
+                    <p>Як ви експлуатуєте свій досвід?</p>
+                </div>
+                <div class="hashtags">#питання #рефлексія</div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Call -->
+        <div class="slide fire-texture">
+            <div class="slide-number">10/12</div>
+            <div class="slide-content">
+                <div class="title">ЗАКЛИК</div>
+                <div class="content">
+                    <p>Поділіться своїм досвідом</p>
+                    <p>У коментарях</p>
+                </div>
+                <div class="hashtags">#заклик #коментарі</div>
+            </div>
+        </div>
+
+        <!-- Slide 11: The Wisdom -->
+        <div class="slide wave-texture">
+            <div class="slide-number">11/12</div>
+            <div class="slide-content">
+                <div class="title">МУДРІСТЬ</div>
+                <div class="quote">
+                    "Досвід - це не те, що з тобою сталося, а те, що ти з цим зробив"
+                </div>
+                <div class="hashtags">#мудрість #цитата</div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The End -->
+        <div class="slide landscape-texture">
+            <div class="slide-number">12/12</div>
+            <div class="slide-content">
+                <div class="title">КІНЕЦЬ</div>
+                <div class="content">
+                    <p>Дякую за увагу!</p>
+                    <p>Лайк, якщо сподобалося</p>
+                </div>
+                <div class="hashtags">#дякую #лайк</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "title": "Digital Transformation",
+  "subtitle": "Revolutionizing how we connect with audiences through bold, minimalist design and impactful storytelling.",
+  "painStats": [
+    { "label": "Engagement Rate", "value": "347%" },
+    { "label": "Conversion Lift", "value": "89%" },
+    { "label": "Brand Recall", "value": "92%" }
+  ],
+  "diagram": {
+    "nodes": [
+      { "id": "awareness", "label": "Visual Impact" },
+      { "id": "consideration", "label": "Emotional Connection" },
+      { "id": "conversion", "label": "Action Driven" }
+    ],
+    "edges": [
+      { "from": "awareness", "to": "consideration" },
+      { "from": "consideration", "to": "conversion" }
+    ]
+  },
+  "cta": "Transform Your Brand"
+}

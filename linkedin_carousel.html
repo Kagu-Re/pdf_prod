@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Carousel - Free Game Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: auto;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .carousel-container {
+            display: flex;
+            width: max-content;
+            min-height: 100vh;
+            background: #000;
+        }
+        
+        .slide {
+            width: 1200px;
+            height: 1500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            border-right: 5px solid #ff0000;
+            background: 
+                repeating-linear-gradient(0deg, #ff0000 0px, #ff0000 20px, #00ff00 20px, #00ff00 40px),
+                repeating-linear-gradient(90deg, #ff0000 0px, #ff0000 20px, #00ff00 20px, #00ff00 40px);
+            background-blend-mode: multiply;
+            overflow: hidden;
+        }
+        
+        .slide-content {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 0;
+            border: 3px solid #ff0000;
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0, 255, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 0, 0, 0.2) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 0%, rgba(255, 0, 0, 0.1) 50%, transparent 100%),
+                linear-gradient(-45deg, transparent 0%, rgba(0, 255, 0, 0.1) 50%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff0000;
+            color: #000;
+            padding: 15px 25px;
+            font-weight: 900;
+            font-size: 20px;
+            border: 3px solid #00ff00;
+            z-index: 20;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 15px 100%);
+            text-transform: uppercase;
+        }
+        
+        .title {
+            font-size: 120px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            line-height: 0.9;
+            max-width: 1100px;
+            display: block;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                3px 3px 0 #ff0000,
+                -3px -3px 0 #00ff00,
+                6px 6px 0 #ff0000,
+                -6px -6px 0 #00ff00;
+        }
+        
+        .subtitle {
+            font-size: 60px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 1100px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                2px 2px 0 #ff0000,
+                -2px -2px 0 #00ff00;
+        }
+        
+        .content {
+            font-size: 48px;
+            line-height: 1.3;
+            text-align: center;
+            max-width: 1000px;
+            color: #fff;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                1px 1px 0 #ff0000,
+                -1px -1px 0 #00ff00;
+        }
+        
+        .highlight {
+            color: #ff4500;
+            font-weight: 700;
+        }
+        
+        .success {
+            color: #00ff88;
+            font-weight: 600;
+        }
+        
+        .warning {
+            color: #ff6b35;
+            font-weight: 600;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 60px 0;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        
+        .stat {
+            text-align: center;
+            margin: 20px;
+            min-width: 300px;
+        }
+        
+        .stat-number {
+            font-size: 120px;
+            font-weight: 800;
+            color: #ff4500;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 32px;
+            color: #ccc;
+            margin-top: 15px;
+        }
+        
+        .list {
+            text-align: left;
+            max-width: 1000px;
+            margin: 40px auto;
+            z-index: 5;
+            position: relative;
+        }
+        
+        .list-item {
+            margin: 20px 0;
+            padding: 20px 30px;
+            position: relative;
+            font-size: 40px;
+            line-height: 1.2;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
+            border-left: 5px solid #ff0000;
+            border-right: 5px solid #00ff00;
+            z-index: 20;
+            text-shadow: 
+                1px 1px 0 #ff0000,
+                -1px -1px 0 #00ff00;
+        }
+        
+        .list-item::before {
+            content: '▶';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 32px;
+            text-shadow: 
+                2px 2px 0 #00ff00,
+                -2px -2px 0 #ff0000;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 56px;
+            color: #fff;
+            text-align: center;
+            margin: 60px 0;
+            padding: 50px;
+            border: 5px solid #ff0000;
+            background: rgba(0, 0, 0, 0.9);
+            max-width: 1000px;
+            line-height: 1.2;
+            z-index: 20;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% calc(100% - 20px), 20px 100%);
+            text-shadow: 
+                2px 2px 0 #ff0000,
+                -2px -2px 0 #00ff00;
+        }
+        
+        .hashtags {
+            text-align: center;
+            font-size: 32px;
+            color: #fff;
+            line-height: 1.2;
+            font-weight: 900;
+            text-transform: uppercase;
+            z-index: 20;
+            position: relative;
+            text-shadow: 
+                2px 2px 0 #ff0000,
+                -2px -2px 0 #00ff00;
+        }
+        
+        .fire-texture {
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 69, 0, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255, 140, 0, 0.1) 50%, transparent 70%);
+        }
+        
+        .brutal-border {
+            border: 3px solid #ff4500;
+            box-shadow: 
+                0 0 0 1px #000,
+                0 0 0 4px #ff4500,
+                0 0 20px rgba(255, 69, 0, 0.3);
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .carousel-container {
+                display: block;
+                width: 100%;
+            }
+            
+            .slide {
+                width: 100%;
+                height: 100vh;
+                page-break-after: always;
+                border: none;
+            }
+            
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <!-- Slide 1: Hook -->
+        <div class="slide">
+            <div class="slide-number">1/12</div>
+            <div class="slide-content">
+                <div class="title fire-texture">6,735 РЯДКІВ</div>
+                <div class="subtitle">В одному файлі</div>
+                <div class="content">
+                    <p>3 дні рефакторингу моноліту</p>
+                </div>
+                <div class="hashtags">#рефакторинг #моноліт</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Challenge -->
+        <div class="slide">
+            <div class="slide-number">2/12</div>
+            <div class="slide-content">
+                <div class="title">ВИКЛИК</div>
+                <div class="list">
+                    <div class="list-item success">Розбити моноліт на модулі</div>
+                    <div class="list-item success">Зберегти функціональність</div>
+                    <div class="list-item success">Покращити читабельність</div>
+                </div>
+                <div class="hashtags">#виклик #модулі</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Process -->
+        <div class="slide">
+            <div class="slide-number">3/12</div>
+            <div class="slide-content">
+                <div class="title">ПРОЦЕС</div>
+                <div class="content">
+                    <div class="list">
+                        <div class="list-item warning">Аналіз залежностей</div>
+                        <div class="list-item warning">Виділення модулів</div>
+                        <div class="list-item warning">Рефакторинг крок за кроком</div>
+                    </div>
+                </div>
+                <div class="hashtags">#процес #аналіз</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Discovery -->
+        <div class="slide">
+            <div class="slide-number">4/12</div>
+            <div class="title">ВІДКРИТТЯ</div>
+            <div class="content">
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">17</span>
+                        <div class="stat-label">модулів</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <div class="stat-label">дні</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hashtags">#відкриття #модулі</div>
+        </div>
+
+        <!-- Slide 5: The Insight -->
+        <div class="slide">
+            <div class="slide-number">5/12</div>
+            <div class="title">ІНСАЙТ</div>
+            <div class="content">
+                <div class="quote">
+                    "Рефакторинг - це не про складність, а про простоту"
+                </div>
+            </div>
+            <div class="hashtags">#інсайт #простота</div>
+        </div>
+
+        <!-- Slide 6: The Lesson -->
+        <div class="slide">
+            <div class="slide-number">6/12</div>
+            <div class="title">УРОК</div>
+            <div class="content">
+                <div class="list">
+                    <div class="list-item">Модулі > Моноліт</div>
+                    <div class="list-item">Читабельність > Складність</div>
+                    <div class="list-item">Підтримка > Функціонал</div>
+                </div>
+            </div>
+            <div class="hashtags">#урок #модулі</div>
+        </div>
+
+        <!-- Slide 7: The Result -->
+        <div class="slide">
+            <div class="slide-number">7/12</div>
+            <div class="title">РЕЗУЛЬТАТ</div>
+            <div class="content">
+                <div class="list">
+                    <div class="list-item">Код став читабельним</div>
+                    <div class="list-item">Модулі легко тестувати</div>
+                    <div class="list-item">Підтримка спростилася</div>
+                </div>
+            </div>
+            <div class="hashtags">#результат #успіх</div>
+        </div>
+
+        <!-- Slide 8: The Next Step -->
+        <div class="slide">
+            <div class="slide-number">8/12</div>
+            <div class="title">НАСТУПНИЙ КРОК</div>
+            <div class="content">
+                <div class="quote">
+                    "Тепер реалізую саму ідею з новим підходом"
+                </div>
+            </div>
+            <div class="hashtags">#наступнийкрок #ідея</div>
+        </div>
+
+        <!-- Slide 9: The Wisdom -->
+        <div class="slide">
+            <div class="slide-number">9/12</div>
+            <div class="title">МУДРІСТЬ</div>
+            <div class="content">
+                <div class="quote">
+                    "Рефакторинг - це інвестиція в майбутнє"
+                </div>
+            </div>
+            <div class="hashtags">#мудрість #інвестиція</div>
+        </div>
+
+        <!-- Slide 10: The Impact -->
+        <div class="slide">
+            <div class="slide-number">10/12</div>
+            <div class="title">ВПЛИВ</div>
+            <div class="content">
+                <div class="list">
+                    <div class="list-item">6,735 рядків → 17 модулів</div>
+                    <div class="list-item">1 файл → 17 файлів</div>
+                    <div class="list-item">3 дні → Вічність підтримки</div>
+                </div>
+            </div>
+            <div class="hashtags">#вплив #модулі</div>
+        </div>
+
+        <!-- Slide 11: The Question -->
+        <div class="slide">
+            <div class="slide-number">11/12</div>
+            <div class="title">ПИТАННЯ</div>
+            <div class="content">
+                <div class="quote">
+                    "Як ви підходите до рефакторингу великих монолітів?"
+                </div>
+            </div>
+            <div class="hashtags">#питання #рефакторинг</div>
+        </div>
+
+        <!-- Slide 12: The Message -->
+        <div class="slide">
+            <div class="slide-number">12/12</div>
+            <div class="title">ПОВІДОМЛЕННЯ</div>
+            <div class="content">
+                <div class="quote">
+                    "РЕФАКТОРИНГ - ЦЕ МИСТЕЦТВО"
+                </div>
+                <div class="hashtags" style="position: static; font-size: 32px; line-height: 1.5; margin-top: 40px;">
+                    #РЕФАКТОРИНГ #МОДУЛІ #ПРОСТОТА
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            
+            slides.forEach((slide, index) => {
+                slide.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                slide.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

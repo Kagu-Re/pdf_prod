@@ -1,0 +1,21 @@
+{
+  "title": "Economic Moat Debt (EMD)",
+  "subtitle": "Hidden costs from manual, non-data-driven operations",
+  "painStats": [
+    { "label": "Operational Waste", "value": "12%" },
+    { "label": "Revenue Leakage", "value": "8%" },
+    { "label": "Risk Premium", "value": "5%" }
+  ],
+  "diagram": {
+    "nodes": [
+      { "id": "n1", "label": "Manual Process" },
+      { "id": "n2", "label": "Delay" },
+      { "id": "n3", "label": "Loss" }
+    ],
+    "edges": [
+      { "from": "n1", "to": "n2" },
+      { "from": "n2", "to": "n3" }
+    ]
+  },
+  "cta": "See the ROI Plan"
+}

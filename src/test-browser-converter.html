@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Response Converter Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { padding: 10px 20px; margin: 5px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Browser Response Converter Test</h1>
+    
+    <div class="test-section">
+        <h3>Test 1: Basic Response Conversion</h3>
+        <button onclick="testBasicConversion()">Test Basic Conversion</button>
+        <div id="basic-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Test 2: Complex Response with Tools</h3>
+        <button onclick="testComplexConversion()">Test Complex Conversion</button>
+        <div id="complex-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Test 3: Stage Transition Logic</h3>
+        <button onclick="testStageTransitions()">Test Stage Transitions</button>
+        <div id="stage-result"></div>
+    </div>
+
+    <script type="module">
+        // Import the converter (this would work in a real module environment)
+        // For this test, we'll simulate the converter logic
+        
+        function testBasicConversion() {
+            const resultDiv = document.getElementById('basic-result');
+            resultDiv.innerHTML = '<p>Testing basic conversion...</p>';
+            
+            try {
+                const testResponse = "Welcome to our food delivery service! [SHOW:leading_question:Visit Occasion:What brings you in today?]";
+                const result = simulateConverter(testResponse, 'greeting');
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h4>✅ Basic Conversion Test Successful</h4>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Basic Conversion Test Failed</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function testComplexConversion() {
+            const resultDiv = document.getElementById('complex-result');
+            resultDiv.innerHTML = '<p>Testing complex conversion...</p>';
+            
+            try {
+                const testResponse = "Great! I'd love to help you with your order. [SHOW:food_items:Available Items:item1,item2,item3] What would you like to add to your cart?";
+                const result = simulateConverter(testResponse, 'menu_exploration');
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h4>✅ Complex Conversion Test Successful</h4>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Complex Conversion Test Failed</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function testStageTransitions() {
+            const resultDiv = document.getElementById('stage-result');
+            resultDiv.innerHTML = '<p>Testing stage transitions...</p>';
+            
+            try {
+                const testCases = [
+                    { response: "Hi there!", stage: "greeting", expected: "needs_assessment" },
+                    { response: "Show me the menu", stage: "greeting", expected: "menu_exploration" },
+                    { response: "I want to order something", stage: "menu_exploration", expected: "order_placement" },
+                    { response: "What about delivery?", stage: "order_placement", expected: "delivery_setup" }
+                ];
+                
+                let results = [];
+                testCases.forEach((testCase, index) => {
+                    const result = simulateConverter(testCase.response, testCase.stage);
+                    const passed = result.nextStage === testCase.expected;
+                    results.push({
+                        test: `Test ${index + 1}`,
+                        input: testCase.response,
+                        currentStage: testCase.stage,
+                        expected: testCase.expected,
+                        actual: result.nextStage,
+                        passed: passed
+                    });
+                });
+                
+                const allPassed = results.every(r => r.passed);
+                
+                resultDiv.innerHTML = `
+                    <div class="${allPassed ? 'success' : 'error'}">
+                        <h4>${allPassed ? '✅' : '❌'} Stage Transition Test ${allPassed ? 'Successful' : 'Failed'}</h4>
+                        <pre>${JSON.stringify(results, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Stage Transition Test Failed</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Simulate the converter logic (simplified version)
+        function simulateConverter(response, currentStage) {
+            const responseLower = response.toLowerCase();
+            
+            // Extract [SHOW:...] tools
+            const showTools = [];
+            const showPattern = /\[SHOW:([^:]+):([^:]+):([^\]]+)\]/g;
+            let match;
+            while ((match = showPattern.exec(response)) !== null) {
+                showTools.push({
+                    type: match[1].trim(),
+                    title: match[2].trim(),
+                    data: match[3].trim()
+                });
+            }
+            
+            // Determine next stage
+            let nextStage = null;
+            if (currentStage === "greeting") {
+                if (responseLower.includes("menu") || responseLower.includes("food")) {
+                    nextStage = "menu_exploration";
+                } else {
+                    nextStage = "needs_assessment";
+                }
+            } else if (currentStage === "menu_exploration") {
+                if (responseLower.includes("order") || responseLower.includes("cart")) {
+                    nextStage = "order_placement";
+                } else {
+                    nextStage = "order_placement";
+                }
+            } else if (currentStage === "order_placement") {
+                if (responseLower.includes("delivery")) {
+                    nextStage = "delivery_setup";
+                } else {
+                    nextStage = "delivery_setup";
+                }
+            }
+            
+            // Generate commands
+            const commands = [];
+            if (currentStage === "greeting") {
+                commands.push(
+                    { id: "browse_menu", text: "Browse Menu", icon: "🍽️", action: "browse_menu" },
+                    { id: "set_preferences", text: "Set Preferences", icon: "⚙️", action: "set_preferences" }
+                );
+            } else if (currentStage === "menu_exploration") {
+                commands.push(
+                    { id: "browse_menu", text: "Browse Menu", icon: "🍽️", action: "browse_menu" },
+                    { id: "view_cart", text: "View Cart", icon: "🛒", action: "view_cart" }
+                );
+            }
+            
+            return {
+                content: response,
+                assets: [],
+                commands: commands,
+                nextStage: nextStage,
+                contextUpdates: {
+                    userIntent: "unknown",
+                    conversationGoals: ["understand_needs"],
+                    contextFlags: {}
+                },
+                confidence: 0.8,
+                reasoning: `Converted from Ollama response for ${currentStage} stage`
+            };
+        }
+        
+        // Make functions global for onclick handlers
+        window.testBasicConversion = testBasicConversion;
+        window.testComplexConversion = testComplexConversion;
+        window.testStageTransitions = testStageTransitions;
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,42 @@
+{
+  "title": "Project Delivery Workflow",
+  "subtitle": "From concept to completion in 5 strategic phases",
+  "flowType": "linear",
+  "steps": [
+    {
+      "id": "discovery",
+      "title": "Discovery & Strategy",
+      "description": "Deep dive into your brand, audience, and objectives to create a strategic foundation for success.",
+      "duration": "Week 1",
+      "status": "completed"
+    },
+    {
+      "id": "concept",
+      "title": "Concept Development",
+      "description": "Ideation and creative exploration to develop unique concepts that align with your strategic goals.",
+      "duration": "Week 2",
+      "status": "completed"
+    },
+    {
+      "id": "design",
+      "title": "Design & Production",
+      "description": "Transform concepts into polished assets with attention to detail and brand consistency.",
+      "duration": "Week 3-4",
+      "status": "active"
+    },
+    {
+      "id": "review",
+      "title": "Review & Refinement",
+      "description": "Collaborative feedback process to ensure every detail meets your expectations and objectives.",
+      "duration": "Week 5",
+      "status": "pending"
+    },
+    {
+      "id": "delivery",
+      "title": "Final Delivery",
+      "description": "Complete asset package with all formats, guidelines, and ongoing support documentation.",
+      "duration": "Week 6",
+      "status": "pending"
+    }
+  ]
+}

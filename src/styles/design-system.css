@@ -1,0 +1,438 @@
+/* Agile Tunnel Design System - CSS Custom Properties */
+/* Version: 1.0.0 */
+/* Last Updated: 2025-01-27 */
+
+:root {
+  /* ========================================
+     TYPOGRAPHY SCALE
+     ======================================== */
+  
+  /* Font Families */
+  --font-family-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-secondary: 'Georgia', 'Times New Roman', serif;
+  --font-family-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+  --line-height-loose: 2.0;
+  
+  /* Hero Card Typography */
+  --font-size-hero-title: 4rem;      /* 64px */
+  --font-size-hero-subtitle: 2rem;   /* 32px */
+  --font-size-hero-body: 1.25rem;    /* 20px */
+  --font-weight-hero-title: var(--font-weight-black);
+  --font-weight-hero-subtitle: var(--font-weight-light);
+  --font-weight-hero-body: var(--font-weight-normal);
+  
+  /* Content Card Typography */
+  --font-size-content-title: 2.5rem;    /* 40px */
+  --font-size-content-subtitle: 1.5rem; /* 24px */
+  --font-size-content-body: 1.125rem;   /* 18px */
+  --font-weight-content-title: var(--font-weight-bold);
+  --font-weight-content-subtitle: var(--font-weight-medium);
+  --font-weight-content-body: var(--font-weight-normal);
+  
+  /* Metric Card Typography */
+  --font-size-metric-value: 3.5rem;     /* 56px */
+  --font-size-metric-label: 1.25rem;    /* 20px */
+  --font-size-metric-body: 1rem;        /* 16px */
+  --font-weight-metric-value: var(--font-weight-black);
+  --font-weight-metric-label: var(--font-weight-medium);
+  --font-weight-metric-body: var(--font-weight-normal);
+  
+  /* Process Card Typography */
+  --font-size-process-title: 2rem;        /* 32px */
+  --font-size-process-step-number: 1.5rem; /* 24px */
+  --font-size-process-body: 1.125rem;     /* 18px */
+  --font-weight-process-title: var(--font-weight-bold);
+  --font-weight-process-step: var(--font-weight-extrabold);
+  --font-weight-process-body: var(--font-weight-normal);
+  
+  /* Comparison Card Typography */
+  --font-size-comparison-title: 2rem;     /* 32px */
+  --font-size-comparison-option: 1.5rem;  /* 24px */
+  --font-size-comparison-body: 1rem;      /* 16px */
+  --font-weight-comparison-title: var(--font-weight-bold);
+  --font-weight-comparison-option: var(--font-weight-semibold);
+  --font-weight-comparison-body: var(--font-weight-normal);
+  
+  /* Button Typography */
+  --font-size-button: 1rem;           /* 16px */
+  --font-weight-button: var(--font-weight-semibold);
+  
+  /* Small Text */
+  --font-size-small: 0.875rem;        /* 14px */
+  --font-size-xs: 0.75rem;            /* 12px */
+  
+  /* ========================================
+     COLOR SYSTEM
+     ======================================== */
+  
+  /* Semantic Colors */
+  --color-primary: #3B82F6;
+  --color-primary-dark: #2563EB;
+  --color-primary-light: #60A5FA;
+  
+  --color-secondary: #8B5CF6;
+  --color-secondary-dark: #7C3AED;
+  --color-secondary-light: #A78BFA;
+  
+  --color-accent: #F59E0B;
+  --color-accent-dark: #D97706;
+  --color-accent-light: #FBBF24;
+  
+  --color-success: #10B981;
+  --color-success-dark: #059669;
+  --color-success-light: #34D399;
+  
+  --color-warning: #F59E0B;
+  --color-warning-dark: #D97706;
+  --color-warning-light: #FBBF24;
+  
+  --color-error: #EF4444;
+  --color-error-dark: #DC2626;
+  --color-error-light: #F87171;
+  
+  --color-info: #06B6D4;
+  --color-info-dark: #0891B2;
+  --color-info-light: #22D3EE;
+  
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  
+  /* Text Colors */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-inverse: var(--color-white);
+  --color-text-muted: var(--color-gray-400);
+  
+  /* Background Colors */
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-gray-50);
+  --color-bg-tertiary: var(--color-gray-100);
+  --color-bg-inverse: var(--color-gray-900);
+  
+  /* ========================================
+     GRADIENT SYSTEM
+     ======================================== */
+  
+  /* Semantic Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-success: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+  --gradient-warning: linear-gradient(135deg, var(--color-warning) 0%, var(--color-warning-dark) 100%);
+  --gradient-error: linear-gradient(135deg, var(--color-error) 0%, var(--color-error-dark) 100%);
+  --gradient-info: linear-gradient(135deg, var(--color-info) 0%, var(--color-info-dark) 100%);
+  --gradient-neutral: linear-gradient(135deg, var(--color-gray-600) 0%, var(--color-gray-800) 100%);
+  
+  /* Hero Card Gradients */
+  --gradient-hero-purple: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  --gradient-hero-blue: linear-gradient(135deg, #1E40AF 0%, #7C3AED 100%);
+  --gradient-hero-green: linear-gradient(135deg, #059669 0%, #0D9488 100%);
+  --gradient-hero-orange: linear-gradient(135deg, #EA580C 0%, #DC2626 100%);
+  --gradient-hero-pink: linear-gradient(135deg, #BE185D 0%, #7C2D12 100%);
+  
+  /* Background Gradients */
+  --gradient-bg-subtle: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+  --gradient-bg-card: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+  
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+  
+  /* Base spacing scale (8px grid) */
+  --space-0: 0;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+  
+  /* Card-specific spacing */
+  --card-padding-small: var(--space-4);   /* 16px */
+  --card-padding-medium: var(--space-6);  /* 24px */
+  --card-padding-large: var(--space-8);   /* 32px */
+  --card-padding-xl: var(--space-10);     /* 40px */
+  
+  /* Element gaps */
+  --element-gap-tight: var(--space-2);    /* 8px */
+  --element-gap-normal: var(--space-4);   /* 16px */
+  --element-gap-relaxed: var(--space-6);  /* 24px */
+  --element-gap-loose: var(--space-8);    /* 32px */
+  
+  /* Section breaks */
+  --section-break-small: var(--space-8);  /* 32px */
+  --section-break-medium: var(--space-12); /* 48px */
+  --section-break-large: var(--space-16); /* 64px */
+  
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.125rem;     /* 2px */
+  --radius-base: 0.25rem;    /* 4px */
+  --radius-md: 0.375rem;     /* 6px */
+  --radius-lg: 0.5rem;       /* 8px */
+  --radius-xl: 0.75rem;      /* 12px */
+  --radius-2xl: 1rem;        /* 16px */
+  --radius-3xl: 1.5rem;      /* 24px */
+  --radius-full: 9999px;
+  
+  /* Card-specific radius */
+  --card-radius-small: var(--radius-lg);
+  --card-radius-medium: var(--radius-xl);
+  --card-radius-large: var(--radius-2xl);
+  --card-radius-hero: var(--radius-3xl);
+  
+  /* ========================================
+     SHADOWS
+     ======================================== */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Card-specific shadows */
+  --card-shadow: var(--shadow-lg);
+  --card-shadow-elevated: var(--shadow-xl);
+  --card-shadow-dramatic: var(--shadow-2xl);
+  
+  /* ========================================
+     ICON SYSTEM
+     ======================================== */
+  
+  /* Icon sizes */
+  --icon-size-xs: 0.75rem;    /* 12px */
+  --icon-size-sm: 1rem;       /* 16px */
+  --icon-size-base: 1.25rem;  /* 20px */
+  --icon-size-lg: 1.5rem;     /* 24px */
+  --icon-size-xl: 2rem;       /* 32px */
+  --icon-size-2xl: 3rem;      /* 48px */
+  --icon-size-3xl: 4rem;      /* 64px */
+  
+  /* Icon backgrounds */
+  --icon-bg-size-sm: 2rem;    /* 32px */
+  --icon-bg-size-base: 2.5rem; /* 40px */
+  --icon-bg-size-lg: 3rem;    /* 48px */
+  --icon-bg-size-xl: 4rem;    /* 64px */
+  
+  /* ========================================
+     LAYOUT SYSTEM
+     ======================================== */
+  
+  /* Grid system */
+  --grid-columns: 12;
+  --grid-gutter: var(--space-6); /* 24px */
+  
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  
+  /* Z-index scale */
+  --z-index-base: 0;
+  --z-index-content: 10;
+  --z-index-overlay: 20;
+  --z-index-modal: 30;
+  --z-index-tooltip: 40;
+  --z-index-max: 50;
+  
+  /* ========================================
+     ANIMATION SYSTEM
+     ======================================== */
+  
+  /* Transition durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 750ms;
+  
+  /* Easing functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Animation delays */
+  --delay-fast: 100ms;
+  --delay-normal: 200ms;
+  --delay-slow: 300ms;
+  --delay-slower: 500ms;
+  
+  /* ========================================
+     ACCESSIBILITY
+     ======================================== */
+  
+  /* Focus indicators */
+  --focus-ring-width: 2px;
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-offset: 2px;
+  
+  /* Contrast ratios */
+  --contrast-minimum: 4.5;
+  --contrast-enhanced: 7.0;
+  
+  /* Touch targets */
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+  
+  /* ========================================
+     CARD DIMENSIONS
+     ======================================== */
+  
+  /* Standard card dimensions */
+  --card-width: 1080px;
+  --card-height: 1350px;
+  --card-aspect-ratio: 4/5;
+  
+  /* Export dimensions */
+  --export-dpi-standard: 1;
+  --export-dpi-high: 2;
+  --export-dpi-retina: 3;
+  
+  /* ========================================
+     COMPONENT SPECIFIC VARIABLES
+     ======================================== */
+  
+  /* Hero Card */
+  --hero-title-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --hero-badge-bg: rgba(255, 255, 255, 0.2);
+  --hero-decoration-opacity: 0.1;
+  
+  /* Content Card */
+  --content-icon-bg-opacity: 0.1;
+  --content-stat-bg: var(--color-gray-50);
+  --content-stat-border: var(--color-gray-200);
+  
+  /* Metric Card */
+  --metric-value-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --metric-trend-size: 1.5rem;
+  
+  /* Process Card */
+  --process-step-size: 2.5rem;
+  --process-connector-width: 2px;
+  
+  /* Comparison Card */
+  --comparison-divider-width: 2px;
+  --comparison-option-bg: var(--color-gray-50);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Typography utilities */
+.text-hero-title {
+  font-size: var(--font-size-hero-title);
+  font-weight: var(--font-weight-hero-title);
+  line-height: var(--line-height-tight);
+}
+
+.text-hero-subtitle {
+  font-size: var(--font-size-hero-subtitle);
+  font-weight: var(--font-weight-hero-subtitle);
+  line-height: var(--line-height-normal);
+}
+
+.text-content-title {
+  font-size: var(--font-size-content-title);
+  font-weight: var(--font-weight-content-title);
+  line-height: var(--line-height-tight);
+}
+
+.text-metric-value {
+  font-size: var(--font-size-metric-value);
+  font-weight: var(--font-weight-metric-value);
+  line-height: var(--line-height-tight);
+}
+
+/* Color utilities */
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-success { background-color: var(--color-success); }
+.bg-warning { background-color: var(--color-warning); }
+.bg-error { background-color: var(--color-error); }
+
+/* Spacing utilities */
+.p-card-small { padding: var(--card-padding-small); }
+.p-card-medium { padding: var(--card-padding-medium); }
+.p-card-large { padding: var(--card-padding-large); }
+.p-card-xl { padding: var(--card-padding-xl); }
+
+.gap-tight { gap: var(--element-gap-tight); }
+.gap-normal { gap: var(--element-gap-normal); }
+.gap-relaxed { gap: var(--element-gap-relaxed); }
+.gap-loose { gap: var(--element-gap-loose); }
+
+/* Shadow utilities */
+.shadow-card { box-shadow: var(--card-shadow); }
+.shadow-elevated { box-shadow: var(--card-shadow-elevated); }
+.shadow-dramatic { box-shadow: var(--card-shadow-dramatic); }
+
+/* Border radius utilities */
+.rounded-card-small { border-radius: var(--card-radius-small); }
+.rounded-card-medium { border-radius: var(--card-radius-medium); }
+.rounded-card-large { border-radius: var(--card-radius-large); }
+.rounded-card-hero { border-radius: var(--card-radius-hero); }
+
+/* Animation utilities */
+.transition-fast { transition-duration: var(--duration-fast); }
+.transition-normal { transition-duration: var(--duration-normal); }
+.transition-slow { transition-duration: var(--duration-slow); }
+
+.ease-out { transition-timing-function: var(--ease-out); }
+.ease-in-out { transition-timing-function: var(--ease-in-out); }
+.ease-bounce { transition-timing-function: var(--ease-bounce); }
